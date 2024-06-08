@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "postcss-import": {
+      "path": [
+        "./src/styles"
+      ]
+    },
+    "postcss-simple-vars": {},
+    "postcss-nested": {},
+    "postcss-custom-media": {}
+  }
+}

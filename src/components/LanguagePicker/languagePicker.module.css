@@ -1,0 +1,22 @@
+@import 'global';
+
+.picker {
+  display: flex;
+  gap: $space-8;
+}
+
+.option {
+  background: $color-card;
+  border-radius: 50%;
+  border: none;
+  color: $color-white;
+  padding: $space-4;
+  cursor: pointer;
+  text-align: center;
+  width: $space-24;
+  height: $space-24;
+
+  &.selected {
+    background: $color-primary;
+  }
+}

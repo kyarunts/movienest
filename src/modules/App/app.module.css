@@ -1,0 +1,12 @@
+@import 'global';
+
+.wrapper {
+  position: relative;
+  background-color: $color-bg;
+}
+
+.languageMenu {
+  position: absolute;
+  top: $space-24;
+  right: $space-24;
+}

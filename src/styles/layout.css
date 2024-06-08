@@ -1,0 +1,27 @@
+@import 'global';
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $space-24;
+  max-width: 1440px;
+  padding: 0 $space-120;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+
+  @media (--desktop) {
+    padding: 0 $space-64;
+  }
+
+  @media (--tablet) {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 0 $space-32;
+  }
+
+  @media (--mobile) {
+    grid-template-columns: 1fr;
+    padding: 0 $space-24;
+  }
+}
