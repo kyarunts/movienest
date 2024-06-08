@@ -1,0 +1,19 @@
+@import 'global';
+
+.button {
+  padding: $space-16 0;
+  border: none;
+  box-sizing: border-box;
+  border-radius: $radius-10;
+  color: $color-white;
+  cursor: pointer;
+
+  &.filled {
+    background-color: $color-primary;
+  }
+
+  &.outlined {
+    background-color: transparent;
+    outline: 1px solid $color-white;
+  }
+}

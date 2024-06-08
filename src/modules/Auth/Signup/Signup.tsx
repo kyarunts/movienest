@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
+import { Link } from "../../../components/Link/Link";
 
 type SignupForm = {
   email: string;
@@ -29,10 +30,21 @@ export const Signup: FC = () => {
           formKey="email"
           register={register}
         />
-        <Input formKey="password" register={register} />
-        <Input formKey="repeatPassword" register={register} />
+        <Input
+          placeholder="Password"
+          formKey="password"
+          register={register}
+          type="password"
+        />
+        <Input
+          placeholder="Repeat password"
+          formKey="repeatPassword"
+          register={register}
+          type="password"
+        />
         <Button>{t('signup.cta')}</Button>
       </form>
+      <p className={`${styles.switch} body-s`}>Already have an account? <Link to="/signin">{t('signin.header')}</Link></p>
     </div>
   </Layout>;
 };

@@ -1,0 +1,22 @@
+@import 'global';
+
+.input {
+  height: 45px;
+  box-sizing: border-box;
+  border-radius: $radius-10;
+  padding: 0 $space-16;
+  border: none;
+  outline: none;
+  background-color: $color-input;
+  color: $color-white;
+
+  &:focus {
+    color: $color-input;
+    background-color: $color-white;
+    outline: 1px solid $color-input;
+  }
+
+  &::placeholder {
+    color: $color-white;
+  }
+}

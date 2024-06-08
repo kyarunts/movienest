@@ -98,3 +98,11 @@ caption {
   font-weight: 400;
   line-height: 16px;
 }
+
+a {
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+}
