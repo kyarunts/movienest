@@ -1,12 +1,11 @@
-import React, { FC } from "react";
-import { Layout } from "../../../components/Layout/Layout";
+import { FC } from "react";
+import { Layout } from "../../../shared/components/Layout/Layout";
 import styles from '../auth.module.css';
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../../../components/Input/Input";
-import { Button } from "../../../components/Button/Button";
-
-import { Link } from "../../../components/Link/Link";
+import { Input } from "../../../shared/components/Input/Input";
+import { Button } from "../../../shared/components/Button/Button";
+import { Link } from "../../../shared/components/Link/Link";
 
 type SigninForm = {
   email: string;

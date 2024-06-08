@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "../../router";
-import { LanguagePicker } from "../../components/LanguagePicker/LanguagePicker";
+import { LanguagePicker } from "../../shared/components/LanguagePicker/LanguagePicker";
 
 import styles from './app.module.css';
 

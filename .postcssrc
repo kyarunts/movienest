@@ -2,7 +2,7 @@
   "plugins": {
     "postcss-import": {
       "path": [
-        "./src/styles"
+        "./src/shared/styles"
       ]
     },
     "postcss-simple-vars": {},

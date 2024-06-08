@@ -1,11 +1,15 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from '../auth.module.css';
-import { Layout } from "../../../components/Layout/Layout";
+import { Layout } from "../../../shared/components/Layout/Layout";
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../../../components/Input/Input";
-import { Button } from "../../../components/Button/Button";
-import { Link } from "../../../components/Link/Link";
+import { Input } from "../../../shared/components/Input/Input";
+import { Button } from "../../../shared/components/Button/Button";
+import { Link } from "../../../shared/components/Link/Link";
+import { useService } from "../../../shared/hooks/useService";
+import { AuthService } from "../auth.service";
+import { useStore } from "../../../shared/hooks/useStore";
+import { AuthStore } from "../auth.store";
 
 type SignupForm = {
   email: string;
@@ -16,9 +20,15 @@ type SignupForm = {
 export const Signup: FC = () => {
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm<SignupForm>();
+  const {
+    signupState
+  } = useStore(AuthStore, [
+    "signupState"
+  ]);
+  const authService = useService(AuthService);
 
   const onSubmit: SubmitHandler<SignupForm> = (data: SignupForm) => {
-    console.log(data);
+    authService.signup(data);
   };
 
   return <Layout>

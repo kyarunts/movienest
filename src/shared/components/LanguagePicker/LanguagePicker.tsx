@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from './languagePicker.module.css';
 import { useTranslation } from "react-i18next";
-import { supportedLanguages } from "../../locales/i18n";
+import { supportedLanguages } from "../../../locales/i18n";
+
 
 export const LanguagePicker: FC = () => {
   const { i18n } = useTranslation();
