@@ -14,6 +14,7 @@ import { useService } from "../../../shared/hooks/useService";
 import { AuthService } from "../../../shared/services/auth.servic";
 import { useSearchParams } from "react-router-dom";
 import { MovieService } from "../movie.service";
+import { MovieFilters } from "../MovieFilters/MovieFilters";
 
 export const MovieList: FC = () => {
   const { t } = useTranslation();
@@ -60,6 +61,9 @@ export const MovieList: FC = () => {
             <div className={styles.logoutContainer} onClick={logout}>
               <p className={styles.logoutText}>{t('auth.logout')}</p>
               <LogoutIcon />
+            </div>
+            <div className={styles.filters}>
+              <MovieFilters />
             </div>
           </div>
           {movies.map(m => (<div key={m.id} className={styles.listItem}>

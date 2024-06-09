@@ -1,0 +1,21 @@
+@import "global";
+
+.toast {
+  position: fixed;
+  top: $space-32;
+  right: calc(50% - 150px);
+  
+  color: $color-white;
+  width: 300px;
+  padding: $space-12;
+  text-align: center;
+  border-radius: $radius-md;
+
+  &.error {
+    background-color: $color-error;
+  }
+
+  &.success {
+    background-color: $color-primary;
+  }
+}

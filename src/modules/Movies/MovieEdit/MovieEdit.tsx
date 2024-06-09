@@ -1,18 +1,33 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Layout } from "../../../shared/components/Layout/Layout";
 import styles from '../movies.module.css';
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useService } from "../../../shared/hooks/useService";
 import { MovieService } from "../movie.service";
 import { TMovie } from "../movie.types";
 import { MovieForm } from "../MovieForm/MovieForm";
+import { useStore } from "../../../shared/hooks/useStore";
+import { MovieStore } from "../movie.store";
 
 export const MovieEdit: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { getMovieById, update } = useService(MovieService);
+  const {
+    movieInEdit
+  } = useStore(MovieStore, [
+    "movieInEdit"
+  ]);
 
-  const { update } = useService(MovieService);
+  useEffect(() => {
+    if (!id || Number.isNaN(+id)) {
+      navigate('/error');
+      return;
+    }
+    getMovieById(+id);
+  }, []);
 
   const onCancel = () => {
     if (window.history.state && window.history.state.idx > 0) {
@@ -32,10 +47,11 @@ export const MovieEdit: FC = () => {
         <h2 className={`${styles.heading} ${styles.desktop}`}>{t('movie.header-edit')}</h2>
         <h3 className={`${styles.heading} ${styles.mobile}`}>{t('movie.header-edit')}</h3>
       </div>
-      <MovieForm
+      {movieInEdit ? <MovieForm
+        movie={movieInEdit}
         onCancel={onCancel}
         onConfirm={onEdit}
-      />
+      /> : "Loading"}
     </Layout>;
   </div>;
 };

@@ -6,7 +6,9 @@ import { TTokenData } from "../types/global.types";
 export type HttpError = {
   status: number;
   statusText: string;
-  body?: any;
+  body?: {
+    message: string;
+  };
 };
 
 @singleton()
@@ -50,7 +52,7 @@ export class HttpService {
       delete options.body;
     }
 
-    return from(this.fetchWithDetails<T>(url, options));
+    return from(this.fetchWithDetails<T>(`${process.env.API_URL}/${url}`, options));
   }
 
   public get<T>(url: string, skipAuth?: boolean): Observable<T> {

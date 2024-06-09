@@ -2,42 +2,42 @@ import { inject, singleton } from "tsyringe";
 import { HttpError, HttpService } from "../../shared/services/http.service";
 import { TSigninForm, TSignupForm } from "./user.types";
 import { of } from "rxjs";
-import { catchError } from 'rxjs/operators';
+import { catchError, filter } from 'rxjs/operators';
 import { UserStore } from "./user.store";
 import { TTokenData } from "../../shared/types/global.types";
 import { AuthService } from "../../shared/services/auth.servic";
+import { ToastService } from "../../shared/services/toast.service";
+import { t } from "i18next";
 
 @singleton()
 export class UserService {
   constructor(
     @inject(HttpService) private http: HttpService,
     @inject(UserStore) private store: UserStore,
-    @inject(AuthService) private auth: AuthService
+    @inject(AuthService) private auth: AuthService,
+    @inject(ToastService) private toast: ToastService
   ) { }
 
   public signup = (signupForm: TSignupForm) => {
-    this.store.signupState.next('loading');
-    this.http.post<TTokenData>('auth/signup', signupForm, true)
+    const { email, password } = signupForm;
+    this.http.post<TTokenData>('signup', { email, password }, true)
       .pipe(
         catchError((err: HttpError) => {
+          this.toast.error(err.body?.message || t("error.generic"));
           return of(null);
-        }),
+        })
       )
-      .subscribe(tokens => tokens && this.login(tokens));
+      .subscribe(tokens => tokens && this.auth.login(tokens));
   };
 
   public signin = (signinForm: TSigninForm) => {
-    this.auth.login({ accessToken: 'a', refreshToken: 'b' });
-    this.http.post<TTokenData>('auth/signin', signinForm, true)
+    this.http.post<TTokenData>('signin', signinForm, true)
       .pipe(
         catchError((err: HttpError) => {
+          this.toast.error(err.body?.message || t("error.generic"));
           return of(null);
         }),
       )
-      .subscribe(tokens => tokens && this.login(tokens));
-  };
-
-  private login = (tokens: TTokenData) => {
-
+      .subscribe(tokens => tokens && this.auth.login(tokens));
   };
 }

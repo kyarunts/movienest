@@ -33,6 +33,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: $space-120;
+  flex-wrap: wrap;
 
   @media (--tablet) {
     margin-bottom: $space-80;
@@ -63,6 +64,11 @@
   @media (--desktop) {
     display: none;
   }
+}
+
+.filters {
+  flex: 100%;
+  margin-top: $space-24;
 }
 
 .actions {

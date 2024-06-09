@@ -5,6 +5,7 @@ import { MovieList } from "./modules/Movies/MovieList/MovieList";
 import { MovieEdit } from "./modules/Movies/MovieEdit/MovieEdit";
 import { MovieCreate } from "./modules/Movies/MovieCreate/MovieCreate";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import { Error } from "./modules/Error/Error";
 
 const routes: RouteObject[] = [
   {
@@ -36,6 +37,10 @@ const routes: RouteObject[] = [
         element: <MovieCreate />
       }
     ]
+  },
+  {
+    path: '/error',
+    element: <Error />
   }
 ];
 

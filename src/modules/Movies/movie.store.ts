@@ -10,4 +10,5 @@ const movies: TMovie[] = [
 export class MovieStore {
   public movies = new BehaviorSubject<TMovie[]>(movies);
   public currentPage = new BehaviorSubject<number | null>(null);
+  public movieInEdit = new BehaviorSubject<TMovie | null>(null);
 }
