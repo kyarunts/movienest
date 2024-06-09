@@ -1,15 +1,16 @@
 import { inject, singleton } from "tsyringe";
 import { HttpError, HttpService } from "../../shared/services/http.service";
-import { TSigninForm, TSignupForm, TTokenData } from "./auth.types";
+import { TSigninForm, TSignupForm } from "./user.types";
 import { of } from "rxjs";
 import { catchError } from 'rxjs/operators';
-import { AuthStore } from "./auth.store";
+import { UserStore } from "./user.store";
+import { TTokenData } from "../../shared/types/global.types";
 
 @singleton()
-export class AuthService {
+export class UserService {
   constructor(
     @inject(HttpService) private http: HttpService,
-    @inject(AuthStore) private store: AuthStore
+    @inject(UserStore) private store: UserStore
   ) { }
 
   public signup = (signupForm: TSignupForm) => {

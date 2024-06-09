@@ -1,30 +1,41 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
-import { Signin } from "./modules/Auth/Signin/Signin";
-import { Signup } from "./modules/Auth/Signup/Signup";
+import { Signin } from "./modules/User/Signin/Signin";
+import { Signup } from "./modules/User/Signup/Signup";
 import { MovieList } from "./modules/Movies/MovieList/MovieList";
 import { MovieEdit } from "./modules/Movies/MovieEdit/MovieEdit";
 import { MovieCreate } from "./modules/Movies/MovieCreate/MovieCreate";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const routes: RouteObject[] = [
   {
-    path: '/signin',
-    element: <Signin />
+    element: <ProtectedRoutes authRequired={false} />,
+    children: [
+      {
+        path: '/signin',
+        element: <Signin />
+      },
+      {
+        path: '/signup',
+        element: <Signup />
+      }
+    ]
   },
   {
-    path: '/signup',
-    element: <Signup />
-  },
-  {
-    path: '/',
-    element: <MovieList />,
-  },
-  {
-    path: '/movie/:id',
-    element: <MovieEdit />
-  },
-  {
-    path: '/movie',
-    element: <MovieCreate />
+    element: <ProtectedRoutes authRequired={true} />,
+    children: [
+      {
+        path: '/',
+        element: <MovieList />,
+      },
+      {
+        path: '/movie/:id',
+        element: <MovieEdit />
+      },
+      {
+        path: '/movie',
+        element: <MovieCreate />
+      }
+    ]
   }
 ];
 

@@ -1,7 +1,7 @@
 import { inject, singleton } from "tsyringe";
 import { StorageKey, StorageService } from "./storage/storage.service";
-import { TTokenData } from "../../modules/Auth/auth.types";
 import { Observable, from } from "rxjs";
+import { TTokenData } from "../types/global.types";
 
 export type HttpError = {
   status: number;

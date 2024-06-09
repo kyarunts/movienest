@@ -10,7 +10,3 @@ export type TSigninForm = {
   remember: boolean;
 };
 
-export type TTokenData = {
-  accessToken: string;
-  refreshToken: string;
-};

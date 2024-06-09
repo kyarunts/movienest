@@ -1,0 +1,18 @@
+@import 'global';
+
+.rating {
+  display: flex;
+  gap: $space-4;
+}
+
+.rate {
+  /* border: 1px solid white; */
+  color: transparent;
+  height: $space-32;
+  width: $space-32;
+  cursor: pointer;
+
+  &.fill {
+    color: $color-star;
+  }
+}

@@ -5,9 +5,10 @@
   display: flex;
   flex-direction: column;
   gap: $space-8;
+  position: relative;
 }
 
-.input {
+.select {
   height: 45px;
   width: 100%;
   box-sizing: border-box;
@@ -17,23 +18,9 @@
   outline: none;
   background-color: $color-input;
   color: $color-white;
-
-  &:focus {
-    color: $color-input;
-    background-color: $color-white;
-    outline: 1px solid $color-input;
-  }
-
-  &::placeholder {
-    color: $color-placeholder;
-  }
-
-  &.error {
-    outline: 1px solid $color-error;
-  }
+  appearance: none;
 }
 
-.errorMessage {
-  text-align: left;
-  color: $color-error;
+.placeholder {
+  color: $color-placeholder;
 }

@@ -25,6 +25,7 @@ export const Input: FC<InputProps> = ({
       type={type}
       {...register(formKey)}
       placeholder={placeholder}
+      autoComplete="off"
     />
     {errorMessage && <p className={`${styles.errorMessage} body-xs`}>{errorMessage}</p>}
   </div>;

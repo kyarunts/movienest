@@ -16,7 +16,7 @@ export class MovieService {
     console.log(movie);
   };
 
-  public update = () => {
-
+  public update = (movie: Partial<TMovie>) => {
+    console.log(movie);
   };
 }

@@ -6,6 +6,9 @@ import { Input } from "../../../shared/components/Input/Input";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../shared/components/Button/Button";
 import { ImageUpload } from "../../../shared/components/ImageUpload/ImageUpload";
+import { Select } from "../../../shared/components/Select/Select";
+import { MOVIE_GENRES, MOVIE_YEARS, MOVIE_COUNTRIES } from "../../../shared/constants/movie.lookup";
+import { Rating } from "../../../shared/components/Rating/Rating";
 
 type MovieFormProps = {
   movie?: TMovie;
@@ -17,10 +20,16 @@ export const MovieForm: FC<MovieFormProps> = ({
   movie, onConfirm, onCancel
 }) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue } = useForm<TMovie>();
+  const { register, handleSubmit, setValue, getValues } = useForm<TMovie>({
+    defaultValues: { ...movie }
+  });
 
   const onImageSelect = (file: File) => {
     setValue('file', file);
+  };
+
+  const onRateChange = (rate: number) => {
+    setValue('rating', rate);
   };
 
   return <form className={styles.form} onSubmit={handleSubmit(onConfirm)}>
@@ -33,10 +42,32 @@ export const MovieForm: FC<MovieFormProps> = ({
         register={register}
         placeholder={t("movie.title")}
       />
-      <Input
-        formKey="publishingYear"
-        register={register}
+      <Select
+        {...register('publishingYear')}
         placeholder={t("movie.year")}
+        options={MOVIE_YEARS()}
+        selectedValue={getValues('publishingYear')}
+      />
+      <Input
+        formKey="directorFullName"
+        register={register}
+        placeholder={t("movie.director")}
+      />
+      <Select
+        {...register('genre')}
+        placeholder={t("movie.genre")}
+        options={MOVIE_GENRES}
+        selectedValue={getValues('genre')}
+      />
+      <Select
+        {...register('publishingCountry')}
+        placeholder={t("movie.country")}
+        options={MOVIE_COUNTRIES}
+        selectedValue={getValues('publishingCountry')}
+      />
+      <Rating
+        currentRate={getValues('rating') || 0}
+        onRateChange={onRateChange}
       />
     </div>
     <div className={styles.actions}>

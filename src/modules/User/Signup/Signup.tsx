@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from '../auth.module.css';
+import styles from '../user.module.css';
 import { Layout } from "../../../shared/components/Layout/Layout";
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -7,12 +7,12 @@ import { Input } from "../../../shared/components/Input/Input";
 import { Button } from "../../../shared/components/Button/Button";
 import { Link } from "../../../shared/components/Link/Link";
 import { useService } from "../../../shared/hooks/useService";
-import { AuthService } from "../auth.service";
 import { useStore } from "../../../shared/hooks/useStore";
-import { AuthStore } from "../auth.store";
-import { TSignupForm } from "../auth.types";
+import { TSignupForm } from "../user.types";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { UserStore } from "../user.store";
+import { UserService } from "../user.service";
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -28,10 +28,10 @@ export const Signup: FC = () => {
   });
   const {
     signupState
-  } = useStore(AuthStore, [
+  } = useStore(UserStore, [
     "signupState"
   ]);
-  const { signup } = useService(AuthService);
+  const { signup } = useService(UserService);
 
   const onSubmit: SubmitHandler<TSignupForm> = (data: TSignupForm) => {
     signup(data);
