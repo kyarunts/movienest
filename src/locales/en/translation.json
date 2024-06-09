@@ -1,2 +1,5 @@
 {
+  "validation.email": "A valid email is required",
+  "validation.password": "Password must be 8+ chars, with a number and a special character",
+  "validation.repeat-password": "Passwords must match"
 }

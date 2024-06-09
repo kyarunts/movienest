@@ -36,6 +36,7 @@
   grid-area: IMAGE;
   max-width: 470px;
   width: 40vw;
+  height: auto;
 
   @media (--tablet) {
     width: 100%;

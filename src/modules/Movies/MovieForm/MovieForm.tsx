@@ -5,17 +5,27 @@ import styles from "./movieform.module.css";
 import { Input } from "../../../shared/components/Input/Input";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../shared/components/Button/Button";
+import { ImageUpload } from "../../../shared/components/ImageUpload/ImageUpload";
 
-export const MovieForm: FC = () => {
+type MovieFormProps = {
+  movie?: TMovie;
+  onConfirm: (movie: Partial<TMovie>) => void;
+  onCancel: () => void;
+};
+
+export const MovieForm: FC<MovieFormProps> = ({
+  movie, onConfirm, onCancel
+}) => {
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm<TMovie>();
-  const onSubmit = (data: TMovie) => {
-    console.log(data);
+  const { register, handleSubmit, setValue } = useForm<TMovie>();
+
+  const onImageSelect = (file: File) => {
+    setValue('file', file);
   };
 
-  return <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+  return <form className={styles.form} onSubmit={handleSubmit(onConfirm)}>
     <div className={styles.image}>
-      <div className={styles.box}></div>
+      <ImageUpload onImageSelect={onImageSelect} />
     </div>
     <div className={styles.fields}>
       <Input
@@ -30,7 +40,11 @@ export const MovieForm: FC = () => {
       />
     </div>
     <div className={styles.actions}>
-      <Button type="outlined">Cancel</Button>
+      <Button
+        onClick={onCancel}
+        preventDefault={true}
+        type="outlined"
+      >Cancel</Button>
       <Button>Confirm</Button>
     </div>
   </form>;

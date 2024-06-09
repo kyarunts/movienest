@@ -1,5 +1,6 @@
 import { inject, singleton } from "tsyringe";
 import { HttpService } from "../../shared/services/http.service";
+import { TMovie } from "./movie.types";
 
 @singleton()
 export class MovieService {
@@ -8,6 +9,14 @@ export class MovieService {
   ) { }
 
   public getMovies = () => {
-    
-  }
+
+  };
+
+  public create = (movie: Partial<TMovie>) => {
+    console.log(movie);
+  };
+
+  public update = () => {
+
+  };
 }

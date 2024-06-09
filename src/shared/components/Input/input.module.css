@@ -1,7 +1,15 @@
 @import 'global';
 
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
 .input {
   height: 45px;
+  width: 100%;
   box-sizing: border-box;
   border-radius: $radius-md;
   padding: 0 $space-16;
@@ -18,5 +26,15 @@
 
   &::placeholder {
     color: $color-white;
+    opacity: 0.4;
   }
+
+  &.error {
+    outline: 1px solid $color-error;
+  }
+}
+
+.errorMessage {
+  text-align: left;
+  color: $color-error;
 }

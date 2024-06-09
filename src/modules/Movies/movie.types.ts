@@ -7,4 +7,5 @@ export type TMovie = {
   rating?: number;
   directorFullName?: string;
   id?: number;
+  file?: File;
 }

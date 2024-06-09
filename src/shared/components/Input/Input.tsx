@@ -7,7 +7,8 @@ type InputProps = {
   register: UseFormRegister<any>;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
-  style?: CSSProperties;
+  errorMessage?: string;
+  parentClass?: string;
 };
 
 export const Input: FC<InputProps> = ({
@@ -15,13 +16,16 @@ export const Input: FC<InputProps> = ({
   register,
   placeholder,
   type = 'text',
-  style = {}
+  errorMessage,
+  parentClass
 }) => {
-  return <input
-    className={styles.input}
-    style={style}
-    type={type}
-    {...register(formKey)}
-    placeholder={placeholder}
-  />;
+  return <div className={`${styles.container} ${parentClass ? parentClass : ''}`}>
+    <input
+      className={`${styles.input} ${errorMessage ? styles.error : ''}`}
+      type={type}
+      {...register(formKey)}
+      placeholder={placeholder}
+    />
+    {errorMessage && <p className={`${styles.errorMessage} body-xs`}>{errorMessage}</p>}
+  </div>;
 };

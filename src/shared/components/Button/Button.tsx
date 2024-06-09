@@ -7,6 +7,7 @@ type ButtonProps = {
   type?: 'outlined' | 'filled';
   onClick?: () => void;
   parentClass?: string;
+  preventDefault?: boolean;
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -14,11 +15,19 @@ export const Button: FC<ButtonProps> = ({
   style = {},
   type = 'filled',
   onClick = () => { },
-  parentClass
+  parentClass,
+  preventDefault
 }) => {
+  const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (preventDefault) {
+      e.preventDefault();
+    }
+    onClick();
+  };
+
   return <button
     style={style}
     className={`${styles.button} ${styles[type]} ${parentClass || ""}`}
-    onClick={onClick}
+    onClick={onClickHandler}
   >{children}</button>;
 };

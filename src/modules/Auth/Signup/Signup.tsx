@@ -11,46 +11,62 @@ import { AuthService } from "../auth.service";
 import { useStore } from "../../../shared/hooks/useStore";
 import { AuthStore } from "../auth.store";
 import { TSignupForm } from "../auth.types";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().matches(/^(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/).required(),
+  repeatPassword: yup.string().oneOf([yup.ref('password')]).required()
+}).required();
+
 
 export const Signup: FC = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm<TSignupForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<TSignupForm>({
+    resolver: yupResolver(schema)
+  });
   const {
     signupState
   } = useStore(AuthStore, [
     "signupState"
   ]);
-  const authService = useService(AuthService);
+  const { signup } = useService(AuthService);
 
   const onSubmit: SubmitHandler<TSignupForm> = (data: TSignupForm) => {
-    authService.signup(data);
+    signup(data);
   };
 
-  return <Layout>
-    <div className={styles.container}>
-      <h1 className={styles.header}>{t('signup.header')}</h1>
-      <h2 className={styles.headerMobile}>{t('signup.header')}</h2>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          placeholder={t("auth.email")}
-          formKey="email"
-          register={register}
-        />
-        <Input
-          placeholder={t("auth.password")}
-          formKey="password"
-          register={register}
-          type="password"
-        />
-        <Input
-          placeholder={t("auth.repeat-password")}
-          formKey="repeatPassword"
-          register={register}
-          type="password"
-        />
-        <Button>{t('signup.cta')}</Button>
-      </form>
-      <p className={`${styles.switch} body-s`}>{t('signup.have-account')} <Link to="/signin">{t('signin.header')}</Link></p>
-    </div>
-  </Layout>;
+  return <div className={styles.wrapper}>
+    <Layout>
+      <div className={styles.container}>
+        <h1 className={styles.header}>{t('signup.header')}</h1>
+        <h2 className={styles.headerMobile}>{t('signup.header')}</h2>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            placeholder={t("auth.email")}
+            formKey="email"
+            register={register}
+            errorMessage={errors.email ? t("validation.email") : ''}
+          />
+          <Input
+            placeholder={t("auth.password")}
+            formKey="password"
+            register={register}
+            type="password"
+            errorMessage={errors.password ? t("validation.password") : ''}
+          />
+          <Input
+            placeholder={t("auth.repeat-password")}
+            formKey="repeatPassword"
+            register={register}
+            type="password"
+            errorMessage={errors.repeatPassword ? t("validation.repeat-password") : ''}
+          />
+          <Button>{t('signup.cta')}</Button>
+        </form>
+        <p className={`${styles.switch} body-s`}>{t('signup.have-account')} <Link to="/signin">{t('signin.header')}</Link></p>
+      </div>
+    </Layout>
+  </div>;
 };
