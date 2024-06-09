@@ -6,7 +6,6 @@ import { useStore } from "../../../shared/hooks/useStore";
 import { MovieStore } from "../movie.store";
 import styles from '../movies.module.css';
 import { useTranslation } from "react-i18next";
-import { Button } from "../../../shared/components/Button/Button";
 import { Link } from "../../../shared/components/Link/Link";
 import { AddCircleIcon } from "../../../assets/icons/AddCircleIcon";
 import { LogoutIcon } from "../../../assets/icons/LogoutIcon";

@@ -9,7 +9,6 @@
   margin: 0 auto;
   box-sizing: border-box;
   width: 100%;
-  min-height: 100vh;
 
   @media (--desktop) {
     padding: $space-64;
