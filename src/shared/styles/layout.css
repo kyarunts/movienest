@@ -16,12 +16,12 @@
 
   @media (--tablet) {
     grid-template-columns: repeat(9, 1fr);
-    padding: $space-32;
+    padding: $space-80 $space-32 $space-32;
   }
 
   @media (--mobile) {
     grid-template-columns: repeat(2, 1fr);
-    padding: $space-24;
+    padding: $space-80 $space-24 $space-24;
     column-gap: $space-16;
   }
 }

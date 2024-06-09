@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Layout } from "../../../shared/components/Layout/Layout";
 import { MoviesEmpty } from "../MoviesEmpty/MoviesEmpty";
 import { MovieCard } from "../../../shared/components/MovieCard/MovieCard";
@@ -12,23 +12,47 @@ import { LogoutIcon } from "../../../assets/icons/LogoutIcon";
 import { Pagination } from "../../../shared/components/Pagination/Pagination";
 import { useService } from "../../../shared/hooks/useService";
 import { AuthService } from "../../../shared/services/auth.servic";
+import { useSearchParams } from "react-router-dom";
+import { MovieService } from "../movie.service";
 
 export const MovieList: FC = () => {
   const { t } = useTranslation();
   const {
-    movies
+    movies,
+    currentPage
   } = useStore(MovieStore, [
-    "movies"
+    "movies",
+    "currentPage"
   ]);
   const { logout } = useService(AuthService);
+  const { updatePage } = useService(MovieService);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  return <div>
+  const onPageChange = (p: number) => {
+    updatePage(p);
+    searchParams.set('p', p.toString());
+    setSearchParams(searchParams);
+  };
+
+  useEffect(() => {
+    const page = searchParams.get('p');
+    if (!page || Number.isNaN(+page)) {
+      searchParams.set('p', '1');
+      setSearchParams(searchParams);
+      updatePage(1);
+    } else {
+      updatePage(+page);
+    }
+  }, []);
+
+  return <div className={styles.list}>
     {movies?.length
       ? <>
         <Layout>
           <div className={styles.header}>
             <div className={styles.actions}>
-              <h2 className={styles.heading}>{t('movies.list-title')}</h2>
+              <h2 className={`${styles.heading} ${styles.desktop}`}>{t('movies.list-title')}</h2>
+              <h3 className={`${styles.heading} ${styles.mobile}`}>{t('movies.list-title')}</h3>
               <Link parentClass={styles.add} to="/movie">
                 <AddCircleIcon />
               </Link>
@@ -43,9 +67,9 @@ export const MovieList: FC = () => {
           </div>))}
           <div className={styles.pagination}>
             <Pagination
-              currentPage={1}
-              pages={23}
-              onPageChange={(p: number) => { }}
+              currentPage={currentPage}
+              pages={30}
+              onPageChange={onPageChange}
             />
           </div>
         </Layout>

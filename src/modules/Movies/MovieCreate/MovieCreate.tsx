@@ -29,7 +29,8 @@ export const MovieCreate: FC = () => {
   return <div>
     <Layout>
       <div className={styles.header}>
-        <h2 className={styles.heading}>{t('movie.header-create')}</h2>
+        <h2 className={`${styles.heading} ${styles.desktop}`}>{t('movie.header-create')}</h2>
+        <h3 className={`${styles.heading} ${styles.mobile}`}>{t('movie.header-create')}</h3>
       </div>
       <MovieForm
         onCancel={onCancel}

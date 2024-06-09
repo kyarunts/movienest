@@ -1,11 +1,16 @@
 @import 'global';
 
+.list {
+  flex: 1;
+  display: flex;
+}
+
 .emptyContainer {
-  grid-column: 1 / -1;
-  align-self: center;
-  justify-self: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
   gap: $space-40;
 }
 
@@ -28,10 +33,36 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: $space-120;
+
+  @media (--tablet) {
+    margin-bottom: $space-80;
+  }
+
+  @media (--mobile) {
+    margin-bottom: $space-80;
+  }
 }
 
 .heading {
   color: $color-white;
+}
+
+.desktop {
+  @media (--tablet) {
+    display: none;
+  }
+  @media (--mobile) {
+    display: none;
+  }
+}
+
+.mobile {
+  @media (--large) {
+    display: none;
+  }
+  @media (--desktop) {
+    display: none;
+  }
 }
 
 .actions {

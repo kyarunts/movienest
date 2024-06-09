@@ -9,10 +9,41 @@
 .button {
   cursor: pointer;
   color: $color-white;
+  user-select: none;
 }
 
 .disabledButton {
   opacity: 0.2;
   cursor: default;
-  pointer-events: mpm;;
+  pointer-events: none;
+}
+
+.dots {
+  display: flex;
+  width: $space-12;
+  height: $space-12;
+  color: $color-placeholder;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+}
+
+.link {
+  color: $color-white;
+  width: $space-32;
+  height: $space-32;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-card;
+  cursor: pointer;
+  user-select: none;
+
+  &.selected {
+    background-color: $color-primary;
+  }
 }

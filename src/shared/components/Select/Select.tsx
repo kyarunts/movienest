@@ -1,6 +1,5 @@
 import { ChangeEvent, ChangeEventHandler, FC, FocusEventHandler, LegacyRef, forwardRef, useState } from "react";
 import styles from './select.module.css';
-import { UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 type SelectProps = {

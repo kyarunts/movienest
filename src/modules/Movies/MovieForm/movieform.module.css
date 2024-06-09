@@ -1,4 +1,5 @@
 @import 'global';
+$form-left-max-width: 362px;
 
 .form {
   grid-column: 1 / -1;
@@ -11,9 +12,14 @@
     'IMAGE FIELDS'
     'IMAGE ACTIONS';
 
+  @media (--desktop) {
+    column-gap: $space-80;
+  }
+
   @media (--tablet) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
+    column-gap: $space-80;
     row-gap: $space-24;
     grid-template-areas:
       'FIELDS'
@@ -60,11 +66,49 @@
   flex-direction: column;
   gap: $space-16;
   grid-area: FIELDS;
+
+  @media (--large) {
+    max-width: $form-left-max-width;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  @media (--desktop) {
+    max-width: $form-left-max-width;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
+.fullWidth {
+  @media (--large) {
+    flex: 0 0 100%;
+  }
+  @media (--desktop) {
+    flex: 0 0 100%;
+  }
+}
+
+.halfWidth {
+  @media (--large) {
+    flex: 0 0 calc(50% - 8px);
+  }
+  @media (--desktop) {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
 .actions {
   display: flex;
   align-items: flex-start;
   gap: $space-16;
   grid-area: ACTIONS;
+  @media (--large) {
+    max-width: $form-left-max-width;
+  }
+  @media (--desktop) {
+    max-width: $form-left-max-width;
+  }
+}
+
+.button {
+  flex: 1;
 }

@@ -38,28 +38,33 @@ export const MovieForm: FC<MovieFormProps> = ({
     </div>
     <div className={styles.fields}>
       <Input
+        parentClass={styles.fullWidth}
         formKey="title"
         register={register}
         placeholder={t("movie.title")}
       />
-      <Select
-        {...register('publishingYear')}
-        placeholder={t("movie.year")}
-        options={MOVIE_YEARS()}
-        selectedValue={getValues('publishingYear')}
-      />
       <Input
+        parentClass={styles.fullWidth}
         formKey="directorFullName"
         register={register}
         placeholder={t("movie.director")}
       />
       <Select
+        parentClass={styles.halfWidth}
+        {...register('publishingYear')}
+        placeholder={t("movie.year")}
+        options={MOVIE_YEARS()}
+        selectedValue={getValues('publishingYear')}
+      />
+      <Select
+        parentClass={styles.halfWidth}
         {...register('genre')}
         placeholder={t("movie.genre")}
         options={MOVIE_GENRES}
         selectedValue={getValues('genre')}
       />
       <Select
+        parentClass={styles.halfWidth}
         {...register('publishingCountry')}
         placeholder={t("movie.country")}
         options={MOVIE_COUNTRIES}
@@ -72,11 +77,14 @@ export const MovieForm: FC<MovieFormProps> = ({
     </div>
     <div className={styles.actions}>
       <Button
+        parentClass={styles.button}
         onClick={onCancel}
         preventDefault={true}
         type="outlined"
-      >Cancel</Button>
-      <Button>Confirm</Button>
+      >{t("button.cancel")}</Button>
+      <Button
+        parentClass={styles.button}
+      >{t("button.confirm")}</Button>
     </div>
   </form>;
 };
