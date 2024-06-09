@@ -10,6 +10,8 @@ import { Link } from "../../../shared/components/Link/Link";
 import { AddCircleIcon } from "../../../assets/icons/AddCircleIcon";
 import { LogoutIcon } from "../../../assets/icons/LogoutIcon";
 import { Pagination } from "../../../shared/components/Pagination/Pagination";
+import { useService } from "../../../shared/hooks/useService";
+import { AuthService } from "../../../shared/services/auth.servic";
 
 export const MovieList: FC = () => {
   const { t } = useTranslation();
@@ -18,10 +20,8 @@ export const MovieList: FC = () => {
   } = useStore(MovieStore, [
     "movies"
   ]);
+  const { logout } = useService(AuthService);
 
-  const onLogout = () => {
-    alert('logout');
-  };
   return <div>
     {movies?.length
       ? <>
@@ -33,7 +33,7 @@ export const MovieList: FC = () => {
                 <AddCircleIcon />
               </Link>
             </div>
-            <div className={styles.logoutContainer} onClick={onLogout}>
+            <div className={styles.logoutContainer} onClick={logout}>
               <p className={styles.logoutText}>{t('auth.logout')}</p>
               <LogoutIcon />
             </div>

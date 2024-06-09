@@ -5,17 +5,19 @@ import { of } from "rxjs";
 import { catchError } from 'rxjs/operators';
 import { UserStore } from "./user.store";
 import { TTokenData } from "../../shared/types/global.types";
+import { AuthService } from "../../shared/services/auth.servic";
 
 @singleton()
 export class UserService {
   constructor(
     @inject(HttpService) private http: HttpService,
-    @inject(UserStore) private store: UserStore
+    @inject(UserStore) private store: UserStore,
+    @inject(AuthService) private auth: AuthService
   ) { }
 
   public signup = (signupForm: TSignupForm) => {
     this.store.signupState.next('loading');
-    return this.http.post<TTokenData>('auth/signup', signupForm, true)
+    this.http.post<TTokenData>('auth/signup', signupForm, true)
       .pipe(
         catchError((err: HttpError) => {
           return of(null);
@@ -25,7 +27,8 @@ export class UserService {
   };
 
   public signin = (signinForm: TSigninForm) => {
-    return this.http.post<TTokenData>('auth/signin', signinForm, true)
+    this.auth.login({ accessToken: 'a', refreshToken: 'b' });
+    this.http.post<TTokenData>('auth/signin', signinForm, true)
       .pipe(
         catchError((err: HttpError) => {
           return of(null);

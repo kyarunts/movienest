@@ -20,7 +20,6 @@ const schema = yup.object({
   repeatPassword: yup.string().oneOf([yup.ref('password')]).required()
 }).required();
 
-
 export const Signup: FC = () => {
   const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors } } = useForm<TSignupForm>({

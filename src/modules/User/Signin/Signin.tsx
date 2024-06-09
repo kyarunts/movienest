@@ -10,6 +10,8 @@ import { Checkbox } from "../../../shared/components/Checkbox/Checkbox";
 import { TSigninForm } from "../user.types";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { useService } from "../../../shared/hooks/useService";
+import { UserService } from "../user.service";
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -23,9 +25,10 @@ export const Signin: FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<TSigninForm>({
     resolver: yupResolver(schema)
   });
+  const { signin } = useService(UserService);
 
   const onSubmit: SubmitHandler<TSigninForm> = (data: TSigninForm) => {
-    console.log(data);
+    signin(data);
   };
 
   return <div className={styles.wrapper}>
