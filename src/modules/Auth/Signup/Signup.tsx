@@ -10,16 +10,11 @@ import { useService } from "../../../shared/hooks/useService";
 import { AuthService } from "../auth.service";
 import { useStore } from "../../../shared/hooks/useStore";
 import { AuthStore } from "../auth.store";
-
-type SignupForm = {
-  email: string;
-  password: string;
-  repeatPassword: string;
-};
+import { TSignupForm } from "../auth.types";
 
 export const Signup: FC = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm<SignupForm>();
+  const { register, handleSubmit } = useForm<TSignupForm>();
   const {
     signupState
   } = useStore(AuthStore, [
@@ -27,34 +22,35 @@ export const Signup: FC = () => {
   ]);
   const authService = useService(AuthService);
 
-  const onSubmit: SubmitHandler<SignupForm> = (data: SignupForm) => {
+  const onSubmit: SubmitHandler<TSignupForm> = (data: TSignupForm) => {
     authService.signup(data);
   };
 
   return <Layout>
     <div className={styles.container}>
       <h1 className={styles.header}>{t('signup.header')}</h1>
+      <h2 className={styles.headerMobile}>{t('signup.header')}</h2>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          placeholder="Email"
+          placeholder={t("auth.email")}
           formKey="email"
           register={register}
         />
         <Input
-          placeholder="Password"
+          placeholder={t("auth.password")}
           formKey="password"
           register={register}
           type="password"
         />
         <Input
-          placeholder="Repeat password"
+          placeholder={t("auth.repeat-password")}
           formKey="repeatPassword"
           register={register}
           type="password"
         />
         <Button>{t('signup.cta')}</Button>
       </form>
-      <p className={`${styles.switch} body-s`}>Already have an account? <Link to="/signin">{t('signin.header')}</Link></p>
+      <p className={`${styles.switch} body-s`}>{t('signup.have-account')} <Link to="/signin">{t('signin.header')}</Link></p>
     </div>
   </Layout>;
 };

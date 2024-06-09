@@ -1,20 +1,17 @@
 import { FC, ReactNode } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import styles from './link.module.css';
 
 type LinkProps = {
   children: ReactNode;
   to: string;
+  parentClass?: string;
 };
 export const Link: FC<LinkProps> = ({
-  children, to
+  children, to, parentClass
 }) => {
-  const navigate = useNavigate();
-  
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    navigate(to);
-  };
-  
-  return <a className={styles.link} onClick={handleNavigation}>{children}</a>;
+  return <RouterLink
+    to={to}
+    className={`${styles.link} ${parentClass || ''}`}
+  >{children}</RouterLink>;
 };

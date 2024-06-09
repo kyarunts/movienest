@@ -14,19 +14,31 @@
   }
 
   @media (--tablet) {
-    grid-column: 2 / 8;
+    grid-column: 3 / 8;
   }
 
   @media (--mobile) {
-    grid-column: 1;
+    grid-column: span 2;
     min-width: 100%;
   }
 }
 
 .header {
   color: $color-white;
+
+  @media (--mobile) {
+    display: none;
+  }
 }
 
+.headerMobile {
+  color: $color-white;
+  display: none;
+  
+  @media (--mobile) {
+    display: block;
+  }
+}
 .form {
   margin-top: $space-40;
   display: flex;

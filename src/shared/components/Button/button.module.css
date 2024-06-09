@@ -4,7 +4,7 @@
   padding: $space-16 0;
   border: none;
   box-sizing: border-box;
-  border-radius: $radius-10;
+  border-radius: $radius-md;
   color: $color-white;
   cursor: pointer;
 

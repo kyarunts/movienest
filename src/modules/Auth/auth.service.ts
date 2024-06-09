@@ -1,6 +1,6 @@
 import { inject, singleton } from "tsyringe";
 import { HttpError, HttpService } from "../../shared/services/http.service";
-import { TokenData } from "./auth.types";
+import { TSigninForm, TSignupForm, TTokenData } from "./auth.types";
 import { of } from "rxjs";
 import { catchError } from 'rxjs/operators';
 import { AuthStore } from "./auth.store";
@@ -12,9 +12,9 @@ export class AuthService {
     @inject(AuthStore) private store: AuthStore
   ) { }
 
-  public signup = (signupForm: any) => {
+  public signup = (signupForm: TSignupForm) => {
     this.store.signupState.next('loading');
-    return this.http.post<TokenData>('auth/signup', signupForm, true)
+    return this.http.post<TTokenData>('auth/signup', signupForm, true)
       .pipe(
         catchError((err: HttpError) => {
           return of(null);
@@ -23,7 +23,17 @@ export class AuthService {
       .subscribe(tokens => tokens && this.login(tokens));
   };
 
-  private login = (tokens: TokenData) => {
+  public signin = (signinForm: TSigninForm) => {
+    return this.http.post<TTokenData>('auth/signin', signinForm, true)
+      .pipe(
+        catchError((err: HttpError) => {
+          return of(null);
+        }),
+      )
+      .subscribe(tokens => tokens && this.login(tokens));
+  };
+
+  private login = (tokens: TTokenData) => {
 
   };
 }

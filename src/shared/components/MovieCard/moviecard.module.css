@@ -1,0 +1,70 @@
+@import 'global';
+
+.cardLink {
+  text-decoration: none;
+}
+
+.card {
+  border-radius: $radius-lg;
+  background-color: $color-card;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  cursor: pointer;
+  transition: background-color .2s linear;
+
+  &:hover {
+    background-color: $color-card-hover;
+  }
+  @media (--mobile) {
+    gap: $space-12;
+  }
+}
+
+.image {
+  box-sizing: border-box;
+  border-radius: $radius-lg;
+  object-fit: cover;
+  height: 400px;
+  padding: $space-8 $space-8 0;
+
+  @media (--desktop) {
+    height: 350px;
+  }
+
+  @media (--tablet) {
+    height: 300px;
+  }
+
+  @media (--mobile) {
+    height: 246px;
+    padding: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.details {
+  padding: 0 $space-16 $space-16;
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+
+  @media (--mobile) {
+    padding: 0 $space-12 $space-12;
+    gap: $space-16;
+  }
+}
+
+.title {
+  color: $color-white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.year {
+  color: $color-white;
+}

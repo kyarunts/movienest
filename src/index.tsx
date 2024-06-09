@@ -5,4 +5,3 @@ import './locales/i18n';
 import './shared/styles/index.css';
 
 createRoot(document.getElementById('app')!).render(<App />);
-

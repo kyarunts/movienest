@@ -1,0 +1,84 @@
+@import 'global';
+
+.emptyContainer {
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: $space-40;
+}
+
+.emptyHeader {
+  color: $color-white;
+}
+
+.emptyActionContainer {
+  text-align: center;
+}
+
+.emptyButton {
+  padding-left: $space-28;
+  padding-right: $space-28;
+}
+
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-120;
+}
+
+.heading {
+  color: $color-white;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+}
+
+.add {
+  text-decoration: none;
+  width: $space-32;
+  height: $space-32;
+}
+
+.logoutContainer {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+  cursor: pointer;
+}
+
+.logoutText {
+  color: $color-white;
+}
+
+.wrapper {
+}
+
+.listItem {
+  grid-column: span 3;
+  overflow: hidden;
+  margin-bottom: $space-24;
+
+  @media (--tablet) {
+    grid-column: span 3;
+  }
+
+  @media (--mobile) {
+    grid-column: span 1;
+  }
+}
+
+.pagination {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -$space-24;
+  padding-top: $space-120;
+}

@@ -3,7 +3,7 @@
 .input {
   height: 45px;
   box-sizing: border-box;
-  border-radius: $radius-10;
+  border-radius: $radius-md;
   padding: 0 $space-16;
   border: none;
   outline: none;

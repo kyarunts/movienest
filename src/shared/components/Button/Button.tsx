@@ -6,17 +6,19 @@ type ButtonProps = {
   children?: ReactNode;
   type?: 'outlined' | 'filled';
   onClick?: () => void;
+  parentClass?: string;
 };
 
 export const Button: FC<ButtonProps> = ({
   children,
   style = {},
   type = 'filled',
-  onClick = () => { }
+  onClick = () => { },
+  parentClass
 }) => {
   return <button
     style={style}
-    className={`${styles.button} ${styles[type]}`}
+    className={`${styles.button} ${styles[type]} ${parentClass || ""}`}
     onClick={onClick}
   >{children}</button>;
 };

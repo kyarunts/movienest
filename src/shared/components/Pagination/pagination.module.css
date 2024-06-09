@@ -1,0 +1,18 @@
+@import 'global';
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+}
+
+.button {
+  cursor: pointer;
+  color: $color-white;
+}
+
+.disabledButton {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: mpm;;
+}

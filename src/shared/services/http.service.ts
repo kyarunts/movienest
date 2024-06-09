@@ -1,6 +1,6 @@
 import { inject, singleton } from "tsyringe";
 import { StorageKey, StorageService } from "./storage/storage.service";
-import { TokenData } from "../../modules/Auth/auth.types";
+import { TTokenData } from "../../modules/Auth/auth.types";
 import { Observable, from } from "rxjs";
 
 export type HttpError = {
@@ -42,7 +42,7 @@ export class HttpService {
     };
 
     if (!skipAuth) {
-      const tokens = this.storage.get<TokenData>(StorageKey.TOKEN_DATA);
+      const tokens = this.storage.get<TTokenData>(StorageKey.TOKEN_DATA);
       (options?.headers as Record<string, string>)['Authorization'] = `Bearer ${tokens?.accessToken}`;
     }
 

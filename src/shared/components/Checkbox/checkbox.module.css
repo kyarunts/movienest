@@ -1,0 +1,19 @@
+@import "global";
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  width: $space-16;
+  height: $space-16;
+  margin: 0;
+  border-radius: $radius-sm;
+}
+
+.label {
+  padding-left: $space-8;
+  color: $color-white;
+}
