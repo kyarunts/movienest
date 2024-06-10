@@ -12,6 +12,6 @@ export const Error: FC<ErrorProps> = ({
   const { t } = useTranslation();
 
   return <div className={styles.error}>
-    <h2 className={styles.header}>{t(type === 'error' ? "error.header" : "not-found.header")}</h2>
+    <h2 className={styles.header}>{t(type === 'error' ? "error.header" : "error.not-found")}</h2>
   </div>;
 };

@@ -1,38 +1,36 @@
 {
   "button.cancel": "Cancel",
   "button.confirm": "Submit",
-  
+  "button.clear-all": "Clear all",
+  "button.previous": "Prev",
+  "button.next": "Next",
   "movies.list-title": "My movies",
-  "movies.empty": "Welcome to Movienest! Add your first movie", 
+  "movies.empty": "Welcome to Movienest! Add your first movie",
   "movies.add": "Add",
-  "movies.no-results": "",
-  "movies.view-all": "",
-
-  "signin.header": "Sign in",
-  "signin.cta": "Login",
-  "signin.no-account": "Need an account?",
-  "signup.header": "Sign up",
-
-  "validation.email": "A valid email is required",
-  "validation.password": "Password must be 8+ chars, with a number and a special character",
-  "validation.repeat-password": "Passwords must match",
-  "validation.title": "Valid title required",
-  "validation.director": "",
-  "validation.publishing-year": "Release year is required",
-  
-  "error.header": "Oops, something went wrong",
-  "error.generic": "Oops, something went wrong",
-  "error.upload-failed": "Unable to upload the image",
-  "not-found.header": "Page not found",
-  "success": "Success!",
- 
+  "movies.no-results": "No movies match your filter criteria. Please adjust your filters and try again",
+  "movies.view-all": "View all",
   "auth.logout": "Logout",
   "auth.email": "Email",
   "auth.password": "Password",
   "auth.remember": "Remember me",
-
-
-
+  "auth.repeat-password": "Repeat password",
+  "signin.header": "Sign in",
+  "signin.cta": "Login",
+  "signin.no-account": "Need an account?",
+  "signup.header": "Sign up",
+  "signup.cta": "Create account",
+  "signup.have-account": "Have an account?",
+  "validation.email": "A valid email is required",
+  "validation.password": "Password must be 8+ chars, with a number and a special character",
+  "validation.repeat-password": "Passwords must match",
+  "validation.title": "The movie title is required and must not exceed 100 characters",
+  "validation.director": "The director's name is required and must not exceed 70 characters",
+  "validation.publishing-year": "Release year is required",
+  "error.header": "Oops, something went wrong",
+  "error.not-found": "Page not found",
+  "error.generic": "Oops, something went wrong",
+  "error.upload-failed": "Unable to upload the image",
+  "operation.success": "Success!",
   "movie.header-create": "Add movie",
   "movie.header-edit": "Edit movie",
   "movie.genre": "Genre",
@@ -41,16 +39,7 @@
   "movie.sort-by": "Sort",
   "movie.title": "Title",
   "movie.director": "Director",
-
-
-
-
-
-
-
-
-
-
+  "movie.upload-image-instruction": "Upload the movie poster here",
   "genre.action": "Action",
   "genre.adventure": "Adventure",
   "genre.animation": "Animation",
@@ -68,5 +57,8 @@
   "genre.sci-fi": "Science Fiction",
   "genre.thriller": "Thriller",
   "genre.war": "War",
-  "genre.western": "Western"
+  "genre.western": "Western",
+  "sort-by.alphabetical": "Alphabetically",
+  "sort-by.year": "By year",
+  "sort-by.rating": "By rating"
 }

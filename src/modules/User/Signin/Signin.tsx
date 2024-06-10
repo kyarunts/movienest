@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Layout } from "../../../shared/components/Layout/Layout";
 import styles from '../user.module.css';
 import { useTranslation } from "react-i18next";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../../../shared/components/Input/Input";
 import { Button } from "../../../shared/components/Button/Button";
 import { Link } from "../../../shared/components/Link/Link";
@@ -23,7 +23,7 @@ export const Signin: FC = () => {
   const { t } = useTranslation();
 
   const { register, handleSubmit, formState: { errors } } = useForm<TSigninForm>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema) as Resolver<TSigninForm>
   });
   const { signin } = useService(UserService);
 

@@ -24,4 +24,10 @@
     padding: $space-80 $space-24 $space-24;
     column-gap: $space-16;
   }
+
+  @media (--xs-mobile) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: $space-80 $space-24 $space-24;
+    column-gap: $space-16;
+  }
 }

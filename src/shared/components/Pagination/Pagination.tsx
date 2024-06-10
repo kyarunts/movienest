@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./pagination.module.css";
-import { ThreeDots } from "../../../assets/icons/ThreeDots";
+import { ThreeDotsIcon } from "../../../assets/icons/ThreeDotsIcon";
+import { useTranslation } from "react-i18next";
 
 type PaginationProps = {
   currentPage: number | null;
@@ -11,7 +12,7 @@ type PaginationProps = {
 export const Pagination: FC<PaginationProps> = ({
   currentPage, pages, onPageChange
 }) => {
-
+  const { t } = useTranslation();
   const [pageLinks, setPageLinks] = useState<number[]>();
 
   const generateLinks = (currentPage: number, pageCount: number): number[] => {
@@ -50,9 +51,9 @@ export const Pagination: FC<PaginationProps> = ({
     <p
       onClick={onPrevClick}
       className={`${styles.button} ${currentPage === 1 ? styles.disabledButton : ''}`}
-    >Prev</p>
+    >{t('button.previous')}</p>
     {pageLinks && <div className={styles.links}>
-      {pageLinks[0] !== 1 && <div className={styles.dots}><ThreeDots /></div>}
+      {pageLinks[0] !== 1 && <div className={styles.dots}><ThreeDotsIcon /></div>}
       {pageLinks.map(p => (
         <div
           onClick={() => onPageChange(p)}
@@ -60,11 +61,11 @@ export const Pagination: FC<PaginationProps> = ({
           className={`${styles.link} ${p === currentPage ? styles.selected : ''}`}
         ><p>{p}</p></div>
       ))}
-      {pageLinks[pageLinks.length - 1] < pages && <div className={styles.dots}><ThreeDots /></div>}
+      {pageLinks[pageLinks.length - 1] < pages && <div className={styles.dots}><ThreeDotsIcon /></div>}
     </div>}
     <p
       onClick={onNextClick}
       className={`${styles.button} ${currentPage === pages ? styles.disabledButton : ''}`}
-    >Next</p>
+    >{t('button.next')}</p>
   </div>;
 };

@@ -13,7 +13,8 @@ export const MoviesEmpty: FC = () => {
   };
 
   return <div className={styles.emptyContainer}>
-    <h2 className={styles.emptyHeader}>{t('movies.empty')}</h2>
+    <h2 className={`${styles.emptyHeader} ${styles.desktop}`}>{t('movies.empty')}</h2>
+    <h3 className={`${styles.emptyHeader} ${styles.mobile}`}>{t('movies.empty')}</h3>
     <div className={styles.emptyActionContainer}>
       <Button
         parentClass={styles.emptyButton}

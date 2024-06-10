@@ -75,7 +75,7 @@ export const MovieFilters: FC = () => {
       parentClass={styles.clear}
       onClick={clear}
     >
-      Clear all
+      {t('button.clear-all')}
     </Button>
   </form>;
 };

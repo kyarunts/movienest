@@ -13,3 +13,9 @@
   top: $space-24;
   right: $space-24;
 }
+
+.waveIcon {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

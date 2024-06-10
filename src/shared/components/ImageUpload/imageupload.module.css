@@ -25,6 +25,11 @@
   @media (--mobile) {
     padding: $space-80 0;
   }
+
+  &.withImage {
+    padding: 0;
+    height: auto;
+  }
 }
 
 .image {

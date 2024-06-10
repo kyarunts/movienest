@@ -30,7 +30,7 @@ export const ImageUpload: FC<ImageUploadProps> = ({
     maxFiles: 1
   });
 
-  return <div className={styles.container} {...getRootProps()}>
+  return <div className={`${styles.container} ${currentImageURL ? styles.withImage : ''}`} {...getRootProps()}>
     <input {...getInputProps()} />
     {currentImageURL ? <img
       className={styles.image}

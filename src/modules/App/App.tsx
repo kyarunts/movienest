@@ -5,6 +5,7 @@ import { LanguagePicker } from "../../shared/components/LanguagePicker/LanguageP
 import styles from './app.module.css';
 import { Toast } from "../../shared/components/Toast/Toast";
 import { Loader } from "../../shared/components/Loader/Loader";
+import { WaveIcon } from "../../assets/icons/WaveIcon";
 
 export const App: FC = () => {
   return <div className={styles.wrapper}>
@@ -12,6 +13,7 @@ export const App: FC = () => {
     <Loader />
     <div className={styles.languageMenu}><LanguagePicker /></div>
     <RouterProvider router={router} />
+    <div className={styles.waveIcon}><WaveIcon /></div>
   </div>;
 
 };

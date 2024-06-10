@@ -35,7 +35,7 @@ export class MovieService {
           searchParams.append("offset", ((searchFilters.value[key] - 1) * MOVIE_LIMIT).toString());
         } else if (key === 'sortingBy' && searchFilters.value.sortingBy) {
           searchParams.append("sortingBy", searchFilters.value[key]?.toString());
-          searchParams.append("sortingDirection", "ASC");
+          searchParams.append("sortingDirection", searchFilters.value[key] === 'title' ? "ASC" : "DESC");
         } else if (searchFilters.value[key as keyof TFilters]) {
           searchParams.append(key, searchFilters.value[key as keyof TFilters].toString());
         }
@@ -100,7 +100,7 @@ export class MovieService {
         filter(movie => !!movie)
       ).subscribe(() => {
         this.loader.finish();
-        this.toast.success(t("success"));
+        this.toast.success(t("operation.success"));
         this.updateSearchFilters({ reset: true });
         router.navigate(`/`, { replace: true });
       });
@@ -130,7 +130,7 @@ export class MovieService {
         filter(movie => !!movie)
       ).subscribe(movie => {
         this.loader.finish();
-        this.toast.success(t("success"));
+        this.toast.success(t("operation.success"));
         this.store.movieInEdit.next(movie);
       });
   };

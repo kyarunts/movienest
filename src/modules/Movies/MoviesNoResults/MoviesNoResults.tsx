@@ -14,7 +14,9 @@ export const MoviesNoResults: FC = () => {
   };
 
   return <div className={styles.noResults}>
-    <h3 className={styles.noResultsTitle}>{t("movies.no-results")}</h3>
+    <h4 className={`${styles.noResultsTitle} ${styles.desktop}`}>{t("movies.no-results")}</h4>
+    <h5 className={`${styles.noResultsTitle} ${styles.mobile}`}>{t("movies.no-results")}</h5>
+
     <Button
       onClick={viewAll}
       parentClass={styles.noResultsButton}
