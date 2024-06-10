@@ -36,7 +36,9 @@ export const ImageUpload: FC<ImageUploadProps> = ({
       className={styles.image}
       src={currentImageURL}
     /> : <div className={styles.instructions}>
-      <DownloadIcon />
+      <div className={styles.icon}>
+        <DownloadIcon />
+      </div>
       <p className="body-s">
         {t("movie.upload-image-instruction")}
       </p>

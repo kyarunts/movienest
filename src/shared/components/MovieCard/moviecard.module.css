@@ -13,7 +13,7 @@
   flex-direction: column;
   gap: $space-16;
   cursor: pointer;
-  transition: background-color .2s linear;
+  transition: background-color 0.2s linear;
 
   &:hover {
     background-color: $color-card-hover;
@@ -51,6 +51,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-8;
+  color: $color-white;
 
   @media (--mobile) {
     padding: 0 $space-12 $space-12;
@@ -59,12 +60,36 @@
 }
 
 .title {
-  color: $color-white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.year {
-  color: $color-white;
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $space-8;
+}
+
+.rating {
+  display: flex;
+  gap: $space-4;
+  align-items: center;
+}
+
+.star {
+  color: $color-star;
+  flex: 0 0 auto;
+  width: $space-16;
+  height: $space-16;
+}
+
+.director {
+  flex: 100%;
+  text-align: left;
+  color: $color-placeholder;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

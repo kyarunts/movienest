@@ -1,5 +1,5 @@
 import { inject, singleton } from "tsyringe";
-import { StorageKey, StorageService } from "./storage/storage.service";
+import { StorageKey, StorageService } from "./storage.service";
 import { TTokenData } from "../types/global.types";
 import { router } from "../../router";
 

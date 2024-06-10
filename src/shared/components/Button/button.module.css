@@ -7,13 +7,23 @@
   border-radius: $radius-md;
   color: $color-white;
   cursor: pointer;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
 
-  &.filled {
-    background-color: $color-primary;
+.filled {
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary-hover;
   }
+}
 
-  &.outlined {
-    background-color: transparent;
-    outline: 1px solid $color-white;
+.outlined {
+  background-color: transparent;
+  outline: 1px solid $color-white;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-bg;
   }
 }

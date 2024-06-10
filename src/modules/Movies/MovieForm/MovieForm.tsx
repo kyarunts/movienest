@@ -9,6 +9,14 @@ import { ImageUpload } from "../../../shared/components/ImageUpload/ImageUpload"
 import { Select } from "../../../shared/components/Select/Select";
 import { MOVIE_GENRES, MOVIE_YEARS, MOVIE_COUNTRIES } from "../../../shared/constants/movie.lookup";
 import { Rating } from "../../../shared/components/Rating/Rating";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const schema = yup.object({
+  title: yup.string().max(100).required(),
+  publishingYear: yup.number().required(),
+  directorFullName: yup.string().max(70).required()
+}).required();
 
 type MovieFormProps = {
   movie?: TMovie;
@@ -20,7 +28,8 @@ export const MovieForm: FC<MovieFormProps> = ({
   movie, onConfirm, onCancel
 }) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue, getValues } = useForm<TMovie>({
+  const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm<Partial<TMovie>>({
+    resolver: yupResolver(schema),
     defaultValues: { ...movie }
   });
 
@@ -34,7 +43,10 @@ export const MovieForm: FC<MovieFormProps> = ({
 
   return <form className={styles.form} onSubmit={handleSubmit(onConfirm)}>
     <div className={styles.image}>
-      <ImageUpload onImageSelect={onImageSelect} />
+      <ImageUpload
+        onImageSelect={onImageSelect}
+        imageURL={movie?.imageURL}
+      />
     </div>
     <div className={styles.fields}>
       <Input
@@ -42,12 +54,14 @@ export const MovieForm: FC<MovieFormProps> = ({
         formKey="title"
         register={register}
         placeholder={t("movie.title")}
+        errorMessage={errors.title ? t("validation.title") : ''}
       />
       <Input
         parentClass={styles.fullWidth}
         formKey="directorFullName"
         register={register}
         placeholder={t("movie.director")}
+        errorMessage={errors.directorFullName ? t("validation.director") : ''}
       />
       <Select
         parentClass={styles.halfWidth}
@@ -55,6 +69,7 @@ export const MovieForm: FC<MovieFormProps> = ({
         placeholder={t("movie.year")}
         options={MOVIE_YEARS()}
         selectedValue={getValues('publishingYear')}
+        errorMessage={errors.publishingYear ? t("validation.publishing-year") : ''}
       />
       <Select
         parentClass={styles.halfWidth}

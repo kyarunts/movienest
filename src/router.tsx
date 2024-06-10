@@ -40,7 +40,11 @@ const routes: RouteObject[] = [
   },
   {
     path: '/error',
-    element: <Error />
+    element: <Error type="error" />
+  },
+  {
+    path: '*',
+    element: <Error type="notFound" />
   }
 ];
 

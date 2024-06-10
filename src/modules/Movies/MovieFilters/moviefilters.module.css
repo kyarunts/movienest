@@ -1,6 +1,33 @@
-@import "global";
+@import 'global';
 
 .filters {
   display: flex;
   flex-wrap: wrap;
+  gap: $space-16;
+
+  @media (--mobile) {
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.filter {
+  flex: 1;
+
+  @media (--tablet) {
+    flex: 0 0 calc(50% - $space-8);
+  }
+
+  @media (--mobile) {
+    flex: 0 0 130px;
+  }
+}
+
+.clear {
+  padding: 0 $space-8;
+  flex: 0 0 auto;
+  outline-width: 0;
 }

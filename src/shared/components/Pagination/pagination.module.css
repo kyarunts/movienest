@@ -45,5 +45,6 @@
 
   &.selected {
     background-color: $color-primary;
+    pointer-events: none;
   }
 }

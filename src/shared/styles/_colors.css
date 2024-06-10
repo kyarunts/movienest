@@ -1,4 +1,5 @@
 $color-primary: #2BD17E;
+$color-primary-hover: #22A662;
 $color-error: #EB5757;
 $color-bg: #093545;
 $color-input: #224957;
@@ -7,4 +8,5 @@ $color-card-hover: #1f424e;
 $color-white: #fff;
 $color-placeholder: #7a929b;
 $color-link: #2BD17E;
+$color-link-hover: #27B269;
 $color-star: #f5c518;

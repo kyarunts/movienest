@@ -13,9 +13,17 @@
   transition: filter 0.2s linear;
   position: relative;
   box-sizing: border-box;
-  
+
   &:hover {
     filter: blur(2);
+  }
+
+  @media (--tablet) {
+    padding: $space-160 0;
+  }
+
+  @media (--mobile) {
+    padding: $space-80 0;
   }
 }
 
@@ -32,4 +40,9 @@
   align-items: center;
   justify-content: center;
   color: $color-white;
+}
+
+.icon {
+  width: $space-24;
+  height: $space-24;
 }

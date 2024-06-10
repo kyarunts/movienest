@@ -28,7 +28,7 @@ export const Select: FC<SelectProps> = forwardRef(({
   return <div className={`${styles.container} ${parentClass ? parentClass : ''}`}>
     <select
       name={name} ref={ref as LegacyRef<HTMLSelectElement>} onChange={changeHandler} onBlur={onBlur}
-      className={`${styles.select} ${!selected ? styles.placeholder : ''}`}
+      className={`${styles.select} ${!selected ? styles.placeholder : ''} ${errorMessage ? styles.error : ''}`}
       defaultValue={""}
     >
       <option value="" disabled hidden>

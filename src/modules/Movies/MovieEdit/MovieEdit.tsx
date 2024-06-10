@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Layout } from "../../../shared/components/Layout/Layout";
 import styles from '../movies.module.css';
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useService } from "../../../shared/hooks/useService";
 import { MovieService } from "../movie.service";
 import { TMovie } from "../movie.types";
@@ -56,7 +56,7 @@ export const MovieEdit: FC = () => {
         movie={movieInEdit}
         onCancel={onCancel}
         onConfirm={onEdit}
-      /> : "Loading"}
+      /> : null}
     </Layout>;
   </div>;
 };

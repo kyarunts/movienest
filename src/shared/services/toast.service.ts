@@ -3,7 +3,7 @@ import { singleton } from "tsyringe";
 
 @singleton()
 export class ToastService {
-  public toastMessage = new BehaviorSubject<{ type: 'error' | 'success', message: string; } | null>(null);
+  public toastMessage = new BehaviorSubject<{ type: 'error' | 'success', message: string; }>(null);
 
   private open = (type: 'error' | 'success', message: string) => {
     this.toastMessage.next({ type, message });

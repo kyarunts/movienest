@@ -46,3 +46,9 @@ export const MOVIE_COUNTRIES = [
   { value: "mx", label: "Mexico" },
   { value: "other", label: "Other" }
 ];
+
+export const MOVIE_SORT_BY = [
+  { value: 'title', label: "sort-by.alphabetical" },
+  { value: 'publishingYear', label: "sort-by.year" },
+  { value: 'rating', label: "sort-by.rating" }
+];

@@ -1,8 +1,56 @@
 {
+  "button.cancel": "Cancel",
+  "button.confirm": "Submit",
+  
+  "movies.list-title": "My movies",
+  "movies.empty": "Welcome to Movienest! Add your first movie", 
+  "movies.add": "Add",
+  "movies.no-results": "",
+  "movies.view-all": "",
+
+  "signin.header": "Sign in",
+  "signin.cta": "Login",
+  "signin.no-account": "Need an account?",
+  "signup.header": "Sign up",
+
   "validation.email": "A valid email is required",
   "validation.password": "Password must be 8+ chars, with a number and a special character",
   "validation.repeat-password": "Passwords must match",
+  "validation.title": "Valid title required",
+  "validation.director": "",
+  "validation.publishing-year": "Release year is required",
   
+  "error.header": "Oops, something went wrong",
+  "error.generic": "Oops, something went wrong",
+  "error.upload-failed": "Unable to upload the image",
+  "not-found.header": "Page not found",
+  "success": "Success!",
+ 
+  "auth.logout": "Logout",
+  "auth.email": "Email",
+  "auth.password": "Password",
+  "auth.remember": "Remember me",
+
+
+
+  "movie.header-create": "Add movie",
+  "movie.header-edit": "Edit movie",
+  "movie.genre": "Genre",
+  "movie.year": "Release year",
+  "movie.country": "Country",
+  "movie.sort-by": "Sort",
+  "movie.title": "Title",
+  "movie.director": "Director",
+
+
+
+
+
+
+
+
+
+
   "genre.action": "Action",
   "genre.adventure": "Adventure",
   "genre.animation": "Animation",

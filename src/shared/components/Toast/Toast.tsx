@@ -9,10 +9,7 @@ export const Toast: FC = () => {
   const [message, setMessage] = useState<{ type: 'error' | 'success', message: string; } | null>();
 
   useEffect(() => {
-    toastMessage.subscribe(
-      message =>
-        console.log(setMessage(message))
-    );
+    toastMessage.subscribe(setMessage);
   }, []);
 
   return (message ? <div className={`${styles.toast} ${styles[message.type]}`}>

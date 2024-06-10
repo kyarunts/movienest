@@ -1,10 +1,5 @@
 @import 'global';
 
-.list {
-  flex: 1;
-  display: flex;
-}
-
 .emptyContainer {
   display: flex;
   flex-direction: column;
@@ -22,6 +17,7 @@
   text-align: center;
 }
 
+.noResultsButton,
 .emptyButton {
   padding-left: $space-28;
   padding-right: $space-28;
@@ -118,4 +114,16 @@
   align-items: center;
   margin-top: -$space-24;
   padding-top: $space-120;
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: $space-24;
+}
+
+.noResultsTitle {
+  color: $color-white;
 }

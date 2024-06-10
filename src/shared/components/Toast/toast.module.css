@@ -4,7 +4,7 @@
   position: fixed;
   top: $space-32;
   right: calc(50% - 150px);
-  
+  z-index: 1;
   color: $color-white;
   width: 300px;
   padding: $space-12;

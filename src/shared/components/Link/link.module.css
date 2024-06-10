@@ -2,4 +2,9 @@
 
 .link {
   color: $color-link;
+  transition: color .2s linear;
+
+  &:hover {
+    color: $color-link-hover;
+  }
 }

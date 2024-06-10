@@ -11,45 +11,81 @@ import { AddCircleIcon } from "../../../assets/icons/AddCircleIcon";
 import { LogoutIcon } from "../../../assets/icons/LogoutIcon";
 import { Pagination } from "../../../shared/components/Pagination/Pagination";
 import { useService } from "../../../shared/hooks/useService";
-import { AuthService } from "../../../shared/services/auth.servic";
 import { useSearchParams } from "react-router-dom";
 import { MovieService } from "../movie.service";
 import { MovieFilters } from "../MovieFilters/MovieFilters";
+import { FilterKeys, TFilters } from "../movie.types";
+import { MoviesNoResults } from "../MoviesNoResults/MoviesNoResults";
 
 export const MovieList: FC = () => {
   const { t } = useTranslation();
   const {
     movies,
-    currentPage,
-    paginationInfo
+    paginationInfo,
+    searchFilters
   } = useStore(MovieStore, [
     "movies",
-    "currentPage",
-    "paginationInfo"
+    "paginationInfo",
+    "searchFilters"
   ]);
-  const { logout } = useService(AuthService);
-  const { updatePage } = useService(MovieService);
+  const { updateSearchFilters, clearDataAndLogout } = useService(MovieService);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const onPageChange = (p: number) => {
-    updatePage(p);
-    searchParams.set('p', p.toString());
+
+  useEffect(() => {
+    const filters = getFiltersFromQuery();
+    updateSearchFilters({ filter: filters });
+
+    return () => {
+      updateSearchFilters({ reset: true, skipUpdate: true });
+    };
+  }, []);
+
+  useEffect(() => {
+    if (searchFilters) {
+      FilterKeys.forEach(key => {
+        if (searchFilters[key]) {
+          searchParams.set(key, searchFilters[key]?.toString());
+        } else {
+          searchParams.delete(key);
+        }
+      });
+      setSearchParams(searchParams);
+    }
+  }, [searchFilters]);
+
+  const getFiltersFromQuery = (): Partial<TFilters> => {
+    const filters: Partial<TFilters> = {};
+    FilterKeys.forEach(key => {
+      const queryValue = searchParams.get(key);
+      switch (key) {
+        case 'page':
+          filters[key] = !queryValue || Number.isNaN(+queryValue) ? 1 : +queryValue;
+          break;
+        case 'publishingYear':
+          if (queryValue && !Number.isNaN(+queryValue)) {
+            filters[key] = +queryValue;
+          }
+          break;
+        case 'rating':
+          break;
+        default:
+          if (queryValue) {
+            filters[key] = queryValue;
+          }
+      }
+    });
+    return filters;
+  };
+
+  const onPageChange = (page: number) => {
+    updateSearchFilters({ filter: { page }, partial: true });
+    searchParams.set('page', page.toString());
     setSearchParams(searchParams);
   };
 
-  useEffect(() => {
-    const page = searchParams.get('p');
-    if (!page || Number.isNaN(+page)) {
-      searchParams.set('p', '1');
-      setSearchParams(searchParams);
-      updatePage(1);
-    } else {
-      updatePage(+page);
-    }
-  }, []);
-
-  return (movies ? <div className={styles.list}>
-    {movies?.length
+  return (paginationInfo && <>
+    {paginationInfo?.totalCount as number > 0
       ? <>
         <Layout>
           <div className={styles.header}>
@@ -60,7 +96,7 @@ export const MovieList: FC = () => {
                 <AddCircleIcon />
               </Link>
             </div>
-            <div className={styles.logoutContainer} onClick={logout}>
+            <div className={styles.logoutContainer} onClick={clearDataAndLogout}>
               <p className={styles.logoutText}>{t('auth.logout')}</p>
               <LogoutIcon />
             </div>
@@ -68,18 +104,22 @@ export const MovieList: FC = () => {
               <MovieFilters />
             </div>
           </div>
-          {movies.map(m => (<div key={m.id} className={styles.listItem}>
-            <MovieCard {...m} />
-          </div>))}
-          <div className={styles.pagination}>
+          {
+            movies && movies.length
+              ? movies?.map(m => (<div key={m.id} className={styles.listItem}>
+                <MovieCard {...m} />
+              </div>))
+              : <MoviesNoResults />
+          }
+          {movies && movies.length ? <div className={styles.pagination}>
             <Pagination
-              currentPage={currentPage}
+              currentPage={+(searchFilters?.page as number)}
               pages={paginationInfo?.totalPages as number}
               onPageChange={onPageChange}
             />
-          </div>
+          </div> : null}
         </Layout>
       </>
       : <MoviesEmpty />}
-  </div> : "Loading");
+  </>);
 };
