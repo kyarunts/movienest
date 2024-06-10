@@ -1,4 +1,4 @@
-@import 'global';
+@import '~/global.css';
 $form-left-max-width: 362px;
 
 .form {

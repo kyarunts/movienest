@@ -1,4 +1,4 @@
-@import 'global';
+@import '~/global.css';
 
 .cardLink {
   text-decoration: none;

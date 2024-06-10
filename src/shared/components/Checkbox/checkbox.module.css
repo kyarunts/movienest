@@ -1,4 +1,4 @@
-@import "global";
+@import "~/global.css";
 
 .checkbox {
   display: flex;
