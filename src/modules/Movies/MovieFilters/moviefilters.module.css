@@ -1,0 +1,6 @@
+@import "global";
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+}

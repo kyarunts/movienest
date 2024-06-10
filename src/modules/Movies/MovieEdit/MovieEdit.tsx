@@ -14,7 +14,8 @@ export const MovieEdit: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { getMovieById, update } = useService(MovieService);
+  const { getMovieById, update, removeMovieInEdit } = useService(MovieService);
+
   const {
     movieInEdit
   } = useStore(MovieStore, [
@@ -27,6 +28,10 @@ export const MovieEdit: FC = () => {
       return;
     }
     getMovieById(+id);
+
+    return () => {
+      removeMovieInEdit();
+    };
   }, []);
 
   const onCancel = () => {

@@ -25,7 +25,8 @@ export class UserService {
         catchError((err: HttpError) => {
           this.toast.error(err.body?.message || t("error.generic"));
           return of(null);
-        })
+        }),
+        filter(tokens => !!tokens)
       )
       .subscribe(tokens => tokens && this.auth.login(tokens));
   };
@@ -37,6 +38,7 @@ export class UserService {
           this.toast.error(err.body?.message || t("error.generic"));
           return of(null);
         }),
+        filter(tokens => !!tokens)
       )
       .subscribe(tokens => tokens && this.auth.login(tokens));
   };

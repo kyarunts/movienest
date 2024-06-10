@@ -55,8 +55,11 @@ export class HttpService {
     return from(this.fetchWithDetails<T>(`${process.env.API_URL}/${url}`, options));
   }
 
-  public get<T>(url: string, skipAuth?: boolean): Observable<T> {
-    return this.makeRequest<T>("GET", url, undefined, skipAuth);
+  public get<T>(url: string, searchParams?: URLSearchParams, skipAuth?: boolean): Observable<T> {
+    const urlWithParams = searchParams && searchParams?.size > 0
+      ? `${url}?${searchParams}`
+      : url;
+    return this.makeRequest<T>("GET", urlWithParams, undefined, skipAuth);
   }
 
   public post<T>(url: string, body: any, skipAuth?: boolean): Observable<T> {

@@ -20,10 +20,12 @@ export const MovieList: FC = () => {
   const { t } = useTranslation();
   const {
     movies,
-    currentPage
+    currentPage,
+    paginationInfo
   } = useStore(MovieStore, [
     "movies",
-    "currentPage"
+    "currentPage",
+    "paginationInfo"
   ]);
   const { logout } = useService(AuthService);
   const { updatePage } = useService(MovieService);
@@ -46,7 +48,7 @@ export const MovieList: FC = () => {
     }
   }, []);
 
-  return <div className={styles.list}>
+  return (movies ? <div className={styles.list}>
     {movies?.length
       ? <>
         <Layout>
@@ -72,12 +74,12 @@ export const MovieList: FC = () => {
           <div className={styles.pagination}>
             <Pagination
               currentPage={currentPage}
-              pages={30}
+              pages={paginationInfo?.totalPages as number}
               onPageChange={onPageChange}
             />
           </div>
         </Layout>
       </>
       : <MoviesEmpty />}
-  </div>;
+  </div> : "Loading");
 };
